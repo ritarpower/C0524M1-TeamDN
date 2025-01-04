@@ -9,28 +9,28 @@ public class Brand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int brand_id;
 
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
     private List<Phone> phones;
 
     public Brand() {
     }
 
-    public Brand(int id, String name, List<Phone> phones) {
-        this.id = id;
+    public Brand(int brand_id, String name, List<Phone> phones) {
+        this.brand_id = brand_id;
         this.name = name;
         this.phones = phones;
     }
 
-    public int getId() {
-        return id;
+    public int getBrand_id() {
+        return brand_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBrand_id(int brand_id) {
+        this.brand_id = brand_id;
     }
 
     public String getName() {
