@@ -20,14 +20,16 @@ public class Phone {
     private Double price;
 
     private String origin;
+    private String imgURL;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id")
     private Brand brand;
 
     public Phone() {
     }
 
-    public Phone(Integer id, String name, Integer capacity, Integer ram, String color, Double price, String origin, Brand brand) {
+    public Phone(Integer id, String name, Integer capacity, Integer ram, String color, Double price, String origin, Brand brand, String imgURL) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
@@ -36,6 +38,7 @@ public class Phone {
         this.price = price;
         this.origin = origin;
         this.brand = brand;
+        this.imgURL = imgURL;
     }
 
     public Integer getId() {
@@ -100,5 +103,13 @@ public class Phone {
 
     public void setBrand(Brand brand) {
         this.brand = brand;
+    }
+
+    public String getImgURL() {
+        return imgURL;
+    }
+
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
     }
 }
