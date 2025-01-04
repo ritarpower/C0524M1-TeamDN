@@ -22,6 +22,7 @@ public class Phone {
     private String origin;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id")
     private Brand brand;
 
     public Phone() {

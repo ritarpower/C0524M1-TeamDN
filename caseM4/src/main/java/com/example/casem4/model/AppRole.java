@@ -1,7 +1,6 @@
 package com.example.casem4.model;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -13,20 +12,22 @@ public class AppRole {
 
     private String role;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<AppUser> users;
 
     public AppRole() {
     }
 
-    public AppRole(int id, String role, List<AppUser> users) {
+    public AppRole(int id, String role) {
         this.id = id;
         this.role = role;
-        this.users = users;
+    }
+
+    public AppRole(String role) {
+        this.role = role;
     }
 
     public int getId() {
-
         return id;
     }
 

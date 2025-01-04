@@ -13,7 +13,7 @@ public class Brand {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
     private List<Phone> phones;
 
     public Brand() {

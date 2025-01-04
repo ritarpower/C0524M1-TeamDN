@@ -3,31 +3,28 @@ package com.example.casem4.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "app_user")
 public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;  // Đổi kiểu dữ liệu từ Integer sang Long
 
     private String username;
-
     private String password;
-
     private String name;
-
     private String address;
-
     private String email;
-
-    private Integer phone;
+    private Long phone;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
     private AppRole role;
 
     public AppUser() {
     }
 
-    public AppUser(int id, String username, String password, String name, String address, String email, Integer phone, AppRole role) {
+    public AppUser(Long id, String username, String password, String name, String address, String email, Long phone, AppRole role) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -38,12 +35,11 @@ public class AppUser {
         this.role = role;
     }
 
-    public int getId() {
-
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -87,11 +83,11 @@ public class AppUser {
         this.email = email;
     }
 
-    public Integer getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h2>Đăng ký tài khoản</h2>
+<form th:action="@{/register}" method="post" th:object="${appUserDTO}">
+    <div>
+        <label for="username">Tên người dùng:</label>
+        <input type="text" id="username" th:field="*{username}" required>
+    </div>
+    <div>
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" th:field="*{password}" required>
+    </div>
+    <div>
+        <label for="name">Họ và tên:</label>
+        <input type="text" id="name" th:field="*{name}" required>
+    </div>
+    <div>
+        <label for="address">Địa chỉ:</label>
+        <input type="text" id="address" th:field="*{address}" required>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required>
+    </div>
+    <div>
+        <label for="phone">Số điện thoại:</label>
+        <input type="text" id="phone" th:field="*{phone}" required>
+    </div>
+    <div>
+        <button type="submit">Đăng ký</button>
+    </div>
+    <div th:if="${error}">
+        <p style="color:red;" th:text="${error}">Lỗi sẽ hiển thị ở đây.</p>
+    </div>
+</form>
+
+<div>
+    <a href="/login">Đã có tài khoản? Đăng nhập ngay</a>
+</div>
+</body>
+</html>
