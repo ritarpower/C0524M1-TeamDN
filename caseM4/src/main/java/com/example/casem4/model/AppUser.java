@@ -3,14 +3,14 @@ package com.example.casem4.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "app_user")
 public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;  // Đổi kiểu dữ liệu từ Integer sang Long
 
     private String username;
-
     private String password;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -20,19 +20,18 @@ public class AppUser {
     public AppUser() {
     }
 
-    public AppUser(int id, String username, String password, AppRole role) {
+    public AppUser(Long id, String username, String password, AppRole role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public int getId() {
-
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -51,7 +50,6 @@ public class AppUser {
     public void setPassword(String password) {
         this.password = password;
     }
-
     public AppRole getRole() {
         return role;
     }
