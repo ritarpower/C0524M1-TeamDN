@@ -5,6 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IAppUserRepository extends JpaRepository<AppUser, Long> {
     AppUser findByUsername(String username);
-    AppUser findByEmail(String email);
-    AppUser findByPhone (Integer phone);
+//    AppUser findByPhone (Integer phone);
 }

@@ -22,7 +22,7 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@ModelAttribute("appUserDTO") AppUserDTO appUserDTO, HttpSession session, Model model) {
         try {
-            if ("admin".equals(appUserDTO.getUsername()) && "admin123".equals(appUserDTO.getPassword())) {
+            if ("admin".equals(appUserDTO.getUsername()) && "admin".equals(appUserDTO.getPassword())) {
                 session.setAttribute("loggedInUser", "admin");
                 return "redirect:/admin-home";
             }
