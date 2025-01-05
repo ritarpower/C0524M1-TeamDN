@@ -30,9 +30,6 @@ public class AppUserDTO implements Validator {
     @Digits(integer = 10, fraction = 0, message = "Số điện thoại phải là số và có tối đa 10 chữ số")
     private Integer phone;
 
-    private String role;
-
-
     public int getId() {
         return id;
     }
@@ -87,14 +84,6 @@ public class AppUserDTO implements Validator {
 
     public void setPhone(Integer phone) {
         this.phone = phone;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     @Override

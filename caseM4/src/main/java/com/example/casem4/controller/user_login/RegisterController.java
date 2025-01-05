@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 @Controller
 public class RegisterController {
 
@@ -18,19 +22,36 @@ public class RegisterController {
         model.addAttribute("appUserDTO", new AppUserDTO());
         return "register";
     }
+///swagger
+@PostMapping("/register")
+public String register(@ModelAttribute("appUserDTO") AppUserDTO appUserDTO, Model model) {
+    List<String> errors = new ArrayList<>();
 
-    @PostMapping("/register")
-    public String register(@ModelAttribute("appUserDTO") AppUserDTO appUserDTO, Model model) {
-        if (appUserService.checkUserByEmail(appUserDTO.getEmail())) {
-            model.addAttribute("error", "Email đã tồn tại trong hệ thống.");
-            return "register";
-        }
-        boolean isRegistered = appUserService.registerUser(appUserDTO);
-        if (isRegistered) {
-            return "redirect:/login?success";
-        } else {
-            model.addAttribute("error", "Đã có lỗi xảy ra khi đăng ký.");
-            return "register";
-        }
+    if (appUserService.checkUserByUsername(appUserDTO.getUsername())) {
+        errors.add("Username đã tồn tại trong hệ thống.");
     }
+
+    if (appUserService.checkUserByEmail(appUserDTO.getEmail())) {
+        errors.add("Email đã tồn tại trong hệ thống.");
+    }
+
+    if (appUserDTO.getPassword().length() < 6) {
+        errors.add("Mật khẩu phải có ít nhất 6 ký tự.");
+    }
+
+    if (!errors.isEmpty()) {
+        model.addAttribute("errors", errors);
+        return "register";
+    }
+
+    boolean isRegistered = appUserService.registerUser(appUserDTO);
+    if (isRegistered) {
+        return "redirect:/login?success";
+    } else {
+        model.addAttribute("errors", Collections.singletonList("Đã có lỗi xảy ra khi đăng ký. Vui lòng thử lại."));
+        return "register";
+    }
+}
+
+
 }

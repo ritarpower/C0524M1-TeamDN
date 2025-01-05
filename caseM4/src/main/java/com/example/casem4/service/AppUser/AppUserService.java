@@ -24,26 +24,14 @@ public class AppUserService implements IAppUserService {
         return appUser != null && appUser.getPassword().equals(password);
     }
 
+
     @Override
     public boolean registerUser(AppUserDTO appUserDTO) {
-        // Kiểm tra tên đăng nhập đã tồn tại chưa
         if (appUserRepository.findByUsername(appUserDTO.getUsername()) != null) {
             return false;
         }
-
-        // Kiểm tra email đã tồn tại chưa
-        if (appUserRepository.findByEmail(appUserDTO.getEmail()) != null) {
-            return false; // Email đã tồn tại
-        }
-
-        // Kiểm tra số điện thoại đã tồn tại chưa
-        if (appUserRepository.findByPhone(appUserDTO.getPhone()) != null) {
-            return false;
-        }
-
-        // Tiến hành lưu người dùng
-        AppRole role = appRoleRepository.findByRole(appUserDTO.getRole());
-        if (role == null) {
+        AppRole defaultRole = appRoleRepository.findByRole("USER");
+        if (defaultRole == null) {
             return false;
         }
 
@@ -53,10 +41,17 @@ public class AppUserService implements IAppUserService {
         appUser.setName(appUserDTO.getName());
         appUser.setEmail(appUserDTO.getEmail());
         appUser.setPhone(Long.valueOf(appUserDTO.getPhone()));
-        appUser.setRole(role);
+        appUser.setRole(defaultRole);
+        appUser.setAddress(appUserDTO.getAddress());
         appUserRepository.save(appUser);
         return true;
     }
+
+    public boolean checkUserByUsername(String username) {
+        return appUserRepository.findByUsername(username) != null;
+    }
+
+
 
     // Phương thức reset mật khẩu
     @Override
