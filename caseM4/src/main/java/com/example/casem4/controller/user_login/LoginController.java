@@ -2,6 +2,7 @@ package com.example.casem4.controller.user_login;
 
 import com.example.casem4.model.AppUserDTO;
 import com.example.casem4.service.AppUser.AppUserService;
+import com.example.casem4.service.AppUser.imple.IAppUserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     @Autowired
-    private AppUserService appUserService;
+    private IAppUserService appUserService;
 
     @GetMapping("/login")
     public String showLoginPage() {
-        return "login";
+        return "Authen/login";
     }
 
     @PostMapping("/login")
@@ -32,11 +33,11 @@ public class LoginController {
                 return "redirect:/";
             } else {
                 model.addAttribute("error", "Tài khoản hoặc mật khẩu không đúng.");
-                return "login";
+                return "Authen/login";
             }
         } catch (Exception e) {
             model.addAttribute("error", "Đã xảy ra lỗi khi đăng nhập.");
-            return "login";
+            return "Authen/login";
         }
     }
 

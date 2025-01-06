@@ -20,7 +20,7 @@ public class RegisterController {
     @GetMapping("/register")
     public String showRegisterPage(Model model) {
         model.addAttribute("appUserDTO", new AppUserDTO());
-        return "register";
+        return "Authen/register";
     }
 ///swagger
 @PostMapping("/register")
@@ -41,7 +41,7 @@ public String register(@ModelAttribute("appUserDTO") AppUserDTO appUserDTO, Mode
 
     if (!errors.isEmpty()) {
         model.addAttribute("errors", errors);
-        return "register";
+        return "Authen/register";
     }
 
     boolean isRegistered = appUserService.registerUser(appUserDTO);
@@ -49,7 +49,7 @@ public String register(@ModelAttribute("appUserDTO") AppUserDTO appUserDTO, Mode
         return "redirect:/login?success";
     } else {
         model.addAttribute("errors", Collections.singletonList("Đã có lỗi xảy ra khi đăng ký. Vui lòng thử lại."));
-        return "register";
+        return "Authen/register";
     }
 }
 

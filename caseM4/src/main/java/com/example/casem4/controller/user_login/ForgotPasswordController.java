@@ -13,7 +13,7 @@ public class ForgotPasswordController {
 
     @GetMapping("/forgot-password")
     public String showForgotPasswordPage() {
-        return "forgot-password";
+        return "Authen/forgot-password";
     }
 
     @PostMapping("/forgot-password")
@@ -22,7 +22,7 @@ public class ForgotPasswordController {
         if (result) {
             return "redirect:/login";
         } else {
-            return "forgot-password";
+            return "Authen/forgot-password";
         }
     }
 }
