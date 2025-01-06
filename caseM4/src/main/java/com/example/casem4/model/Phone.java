@@ -112,4 +112,19 @@ public class Phone {
     public void setImgURL(String imgURL) {
         this.imgURL = imgURL;
     }
+
+    @Override
+    public String toString() {
+        return "Phone{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", capacity=" + capacity +
+                ", ram=" + ram +
+                ", color='" + color + '\'' +
+                ", price=" + price +
+                ", origin='" + origin + '\'' +
+                ", imgURL='" + imgURL + '\'' +
+                ", brand=" + brand +
+                '}';
+    }
 }
